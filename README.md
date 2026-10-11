@@ -32,6 +32,7 @@ data/                      Nội dung (sửa ở đây là chủ yếu)
   _khoi-tao.js               tạo kho SOTAY.DATA
   khoi-lop/01-lop-4.js ...   mỗi khối lớp một file
   trang-web.js               danh sách trang web theo nhóm
+  tai-lieu.js                tài liệu PDF tải về (hiện ở mục Trang web và đầu các bài liên quan)
 js/                        Chức năng, nạp theo thứ tự số
   01-bieu-tuong.js … 18-khoi-dong.js
 tools/gop-mot-file.py      Gộp toàn bộ thành một file HTML trong dist/

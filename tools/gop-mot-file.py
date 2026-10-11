@@ -21,6 +21,8 @@ def inline(m):
     src = m.group(1)
     return "<script>\n" + read(src).replace("</script", "<\\/script") + "\n</script>"
 html = re.sub(r'<script src="((?:data|js)/[^"]+)"></script>', inline, html)
+# bản một file không có thư mục tai-lieu/ bên cạnh: lấy tài liệu từ GitHub
+html = html.replace("<!-- Dữ liệu -->", "<!-- Dữ liệu -->\n<script>window.SOTAY_MOT_FILE = true;</script>", 1)
 
 os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
 out = os.path.join(ROOT, "dist", "so-tay-toan-hoc.html")

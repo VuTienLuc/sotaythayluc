@@ -217,6 +217,12 @@ mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .g-tile:hover{border-color:var(--gc)}
 .g-tile small{margin-left:auto;color:var(--muted);font-weight:500;font-size:.72rem}
 .keys{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.85rem;align-items:center}
+.docbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-4px 0 14px;padding:8px 10px;border:1px dashed color-mix(in srgb,var(--tag-ly) 55%,var(--line));border-radius:10px;background:color-mix(in srgb,var(--tag-ly) 7%,transparent)}
+.docbar-t{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--tag-ly);margin-right:4px}
+.docbar-t svg.ic,.docbtn svg.ic{width:16px;height:16px}
+.docbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;border-radius:8px;padding:6px 10px;font-size:.82rem;font-weight:600}
+.docbtn:hover{border-color:var(--tag-ly);color:var(--tag-ly)}
+@media print{.docbar{display:none}}
 
 /* ---------- TKB & Cài đặt ---------- */
 .page{padding:18px 16px 110px;max-width:980px;margin:0 auto}
@@ -480,6 +486,7 @@ mjx-container{font-size:104% !important}
 <div class="toast" id="toast" role="status"></div>
 
 <!-- Dữ liệu -->
+<script>window.SOTAY_MOT_FILE = true;</script>
 <script>
 // Kho dữ liệu sổ tay. Mỗi file trong data/khoi-lop/ gọi SOTAY.themKhoi({...}).
 // Thứ tự khối lớp trong sổ tay = thứ tự thẻ <script> trong index.html.
@@ -1849,6 +1856,20 @@ window.LINK_GROUPS = [
   ]}
 ];
 </script>
+<script>
+// Tài liệu PDF tải về. File nằm trong thư mục tai-lieu/ của dự án (Vercel phục vụ trực tiếp).
+// khoi: mã khối lớp (g trong data/khoi-lop); mach: tên mạch kiến thức sẽ hiện thanh tải tài liệu ở đầu mỗi bài.
+// Thêm tài liệu: chép file PDF vào tai-lieu/... rồi thêm một dòng {t, mo_ta, file}.
+window.TAI_LIEU = [
+  {ten:"Tài liệu ôn thi giữa kì 1 – Toán 4", khoi:4, mach:"Ôn thi giữa kì 1", items:[
+    {t:"Phiếu ôn tập – Bộ 1", mo_ta:"PDF · 12 trang · 28 bài + đề mẫu, có đáp án", file:"tai-lieu/lop-4-giua-ki-1/phieu-on-tap-bo-1.pdf"},
+    {t:"Phiếu ôn tập – Bộ 2 (nâng cao)", mo_ta:"PDF · 17 trang · 46 bài + đề mẫu 8 câu, có đáp án", file:"tai-lieu/lop-4-giua-ki-1/phieu-on-tap-bo-2.pdf"},
+    {t:"Phiếu làm bài – Đề 1", mo_ta:"PDF · 2 trang · làm bài, chụp ảnh để AI chấm", file:"tai-lieu/lop-4-giua-ki-1/phieu-lam-bai-de-1.pdf"},
+    {t:"Phiếu làm bài – Đề 2", mo_ta:"PDF · 2 trang · làm bài, chụp ảnh để AI chấm", file:"tai-lieu/lop-4-giua-ki-1/phieu-lam-bai-de-2.pdf"},
+    {t:"Hướng dẫn chấm bài bằng AI", mo_ta:"Dành cho giáo viên · đáp án, thang điểm, câu lệnh", file:"tai-lieu/lop-4-giua-ki-1/huong-dan-cham-bai-bang-AI.md", gv:true}
+  ]}
+];
+</script>
 
 <!-- Chức năng -->
 <script>
@@ -1874,6 +1895,8 @@ const IC = {
   minus:'<path d="M5 12h14"/>', plus:'<path d="M12 5v14M5 12h14"/>',
   full:'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
   board:'<rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M7 21l2-4M17 21l-2-4M7 9h6M7 12h9"/>',
+  pdf:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/>',
+  download:'<path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/>',
   globe:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5s-1.1 5.9-3.6 8.5c-2.5-2.6-3.6-5.4-3.6-8.5S9.5 6.1 12 3.5z"/>',
   ext:'<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   school:'<path d="m3 9 9-5 9 5-9 5z"/><path d="M7 11.2V16c0 1.4 2.2 3 5 3s5-1.6 5-3v-4.8"/>',
@@ -2175,6 +2198,13 @@ function neighbors(id){
   const list = visibleEntries(); const k = list.findIndex(e=>e.id===id);
   return {prev:k>0?list[k-1]:null, next:k>=0&&k<list.length-1?list[k+1]:null};
 }
+// Thanh tải tài liệu PDF cho các bài thuộc mạch có trong data/tai-lieu.js
+function docBar(e){
+  const d = (window.TAI_LIEU||[]).find(x=>String(x.khoi)===String(e.g) && x.mach===e.strandName);
+  if(!d) return "";
+  return '<div class="docbar"><span class="docbar-t">'+icon("download")+'Tải phiếu PDF</span>'+
+    d.items.filter(it=>!it.gv).map(it=>'<a class="docbtn" href="'+esc(fileUrl(it.file))+'" target="_blank" rel="noopener" title="'+esc(it.mo_ta)+'">'+icon("pdf")+esc(it.t)+'</a>').join("")+'</div>';
+}
 function renderReader(){
   if(!currentId){ renderWelcome(); return; }
   const e = BY_ID[currentId];
@@ -2196,7 +2226,7 @@ function renderReader(){
     '</div>'+
     '<div class="r-wrap"><article class="sheet'+(state.hideSolutions?' hide-sol':'')+'">'+
       '<div class="crumb"><span class="dot" style="--gc:'+e.gradeColor+'"></span><span>'+esc(e.gradeLabel)+'</span><span>·</span><span>'+esc(e.strandName)+'</span></div>'+
-      '<h1>'+esc(e.topicName)+'</h1>'+
+      '<h1>'+esc(e.topicName)+'</h1>'+docBar(e)+
       (tags.length>1?'<div class="chips" role="group" aria-label="Lọc theo loại">'+
         '<button type="button" class="chip" data-filter="" aria-pressed="'+(!tagFilter)+'">Tất cả <i>'+e.items.length+'</i></button>'+
         tags.map(t=>'<button type="button" class="chip" data-filter="'+t+'" style="--tc:'+tagInfo(t).css+'" aria-pressed="'+(tagFilter===t)+'">'+tagInfo(t).label+' <i>'+counts[t]+'</i></button>').join("")+'</div>':'')+
@@ -2457,12 +2487,20 @@ function focusSearch(){
 <script>
 // ===================== TRANG WEB CỦA THẦY =====================
 const LINK_GROUPS = window.LINK_GROUPS || [];
+const TAI_LIEU = window.TAI_LIEU || [];
+// Đường dẫn tài liệu: chạy từ dự án (Vercel / mở index.html) thì dùng file cạnh trang;
+// bản gộp một file hoặc bản đăng trên claude.ai thì lấy từ GitHub.
+const GITHUB_RAW = "https://raw.githubusercontent.com/VuTienLuc/sotaythayluc/main/";
+const TAI_LIEU_TU_GITHUB = !!window.SOTAY_MOT_FILE || /claude\.(ai|site)|claudeusercontent/.test(location.hostname);
+function fileUrl(f){ return TAI_LIEU_TU_GITHUB ? GITHUB_RAW + f.split("/").map(encodeURIComponent).join("/") : f; }
+function absUrl(u){ try{ return new URL(u, location.href).href; }catch(e){ return u; } }
 function renderLinks(){
-  document.getElementById("links").innerHTML = LINK_GROUPS.map((g,gi)=>
+  const docs = TAI_LIEU.map(d=>({name:d.ten, icon:"pdf", color:"var(--tag-ly)", items:d.items.map(it=>({t:it.t, u:fileUrl(it.file), host:it.mo_ta}))}));
+  document.getElementById("links").innerHTML = docs.concat(LINK_GROUPS).map((g,gi)=>
     '<section class="lgroup"><h3><span>Nhóm '+(gi+1)+'</span><b>'+esc(g.name)+'</b></h3><div class="lgrid">'+
     g.items.map(it=>'<div class="lcard" style="--lc:'+g.color+'"><span class="lic">'+icon(g.icon)+'</span>'+
       '<a href="'+esc(it.u)+'" target="_blank" rel="noopener"><b>'+esc(it.t)+'</b><small>'+esc(it.host || it.u.replace(/^https?:\/\//,"").replace(/\/$/,""))+'</small></a>'+
-      '<button type="button" class="icon-btn" data-copy="'+esc(it.u)+'" aria-label="Sao chép liên kết '+esc(it.t)+'" title="Sao chép liên kết">'+icon("copy")+'</button></div>').join("")+
+      '<button type="button" class="icon-btn" data-copy="'+esc(absUrl(it.u))+'" aria-label="Sao chép liên kết '+esc(it.t)+'" title="Sao chép liên kết">'+icon("copy")+'</button></div>').join("")+
     '</div></section>').join("");
 }
 document.getElementById("links").addEventListener("click", e=>{

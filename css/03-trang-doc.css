@@ -80,3 +80,9 @@
 .g-tile:hover{border-color:var(--gc)}
 .g-tile small{margin-left:auto;color:var(--muted);font-weight:500;font-size:.72rem}
 .keys{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.85rem;align-items:center}
+.docbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-4px 0 14px;padding:8px 10px;border:1px dashed color-mix(in srgb,var(--tag-ly) 55%,var(--line));border-radius:10px;background:color-mix(in srgb,var(--tag-ly) 7%,transparent)}
+.docbar-t{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--tag-ly);margin-right:4px}
+.docbar-t svg.ic,.docbtn svg.ic{width:16px;height:16px}
+.docbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;border-radius:8px;padding:6px 10px;font-size:.82rem;font-weight:600}
+.docbtn:hover{border-color:var(--tag-ly);color:var(--tag-ly)}
+@media print{.docbar{display:none}}

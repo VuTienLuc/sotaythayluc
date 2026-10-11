@@ -20,6 +20,13 @@ function neighbors(id){
   const list = visibleEntries(); const k = list.findIndex(e=>e.id===id);
   return {prev:k>0?list[k-1]:null, next:k>=0&&k<list.length-1?list[k+1]:null};
 }
+// Thanh tải tài liệu PDF cho các bài thuộc mạch có trong data/tai-lieu.js
+function docBar(e){
+  const d = (window.TAI_LIEU||[]).find(x=>String(x.khoi)===String(e.g) && x.mach===e.strandName);
+  if(!d) return "";
+  return '<div class="docbar"><span class="docbar-t">'+icon("download")+'Tải phiếu PDF</span>'+
+    d.items.filter(it=>!it.gv).map(it=>'<a class="docbtn" href="'+esc(fileUrl(it.file))+'" target="_blank" rel="noopener" title="'+esc(it.mo_ta)+'">'+icon("pdf")+esc(it.t)+'</a>').join("")+'</div>';
+}
 function renderReader(){
   if(!currentId){ renderWelcome(); return; }
   const e = BY_ID[currentId];
@@ -41,7 +48,7 @@ function renderReader(){
     '</div>'+
     '<div class="r-wrap"><article class="sheet'+(state.hideSolutions?' hide-sol':'')+'">'+
       '<div class="crumb"><span class="dot" style="--gc:'+e.gradeColor+'"></span><span>'+esc(e.gradeLabel)+'</span><span>·</span><span>'+esc(e.strandName)+'</span></div>'+
-      '<h1>'+esc(e.topicName)+'</h1>'+
+      '<h1>'+esc(e.topicName)+'</h1>'+docBar(e)+
       (tags.length>1?'<div class="chips" role="group" aria-label="Lọc theo loại">'+
         '<button type="button" class="chip" data-filter="" aria-pressed="'+(!tagFilter)+'">Tất cả <i>'+e.items.length+'</i></button>'+
         tags.map(t=>'<button type="button" class="chip" data-filter="'+t+'" style="--tc:'+tagInfo(t).css+'" aria-pressed="'+(tagFilter===t)+'">'+tagInfo(t).label+' <i>'+counts[t]+'</i></button>').join("")+'</div>':'')+
