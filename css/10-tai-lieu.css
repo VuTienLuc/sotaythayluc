@@ -1,0 +1,34 @@
+/* ---------- Tài liệu PDF ---------- */
+.dgrade{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.dgrade>summary,.dgrade.empty{list-style:none;display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;font-size:1rem}
+.dgrade>summary::-webkit-details-marker{display:none}
+.dgrade>summary:hover{background:var(--accent-soft)}
+.dgrade small{margin-left:auto;color:var(--muted);font-size:.78rem;font-weight:600;font-variant-numeric:tabular-nums}
+.dgrade .chev{width:16px;height:16px;color:var(--muted);transition:transform .18s}
+.dgrade[open] .chev{transform:rotate(90deg)}
+.dgrade[open]>summary{border-bottom:1px solid var(--line-soft)}
+.dgrade.empty{cursor:default;opacity:.6;padding:10px 14px}
+.dbody{padding:4px 14px 14px}
+.dmach{font-family:var(--font-title);font-size:1.1rem;margin:12px 0 6px}
+.dsec{margin:0 0 12px}
+.dsec-t{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px}
+.drow{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line-soft)}
+.drow:first-of-type{border-top:0}
+.dnum{flex:none;width:24px;height:24px;border-radius:50%;background:var(--tag-ly);color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.dname{flex:1;min-width:0}
+.dname b{display:block;font-weight:600;font-size:.92rem;line-height:1.35}
+.dname small{display:block;color:var(--muted);font-size:.76rem}
+.dtag{font-style:normal;font-size:.66rem;font-weight:700;color:var(--accent);border:1px solid currentColor;border-radius:999px;padding:0 6px;margin-left:4px;vertical-align:1px}
+.dname b+.dtag{display:inline-block}
+.drow.gv .dname b{display:inline}
+.dact{display:flex;align-items:center;gap:4px;flex:none}
+.dbtn{display:inline-flex;align-items:center;gap:6px;background:var(--tag-ly);color:#fff;text-decoration:none;border-radius:8px;padding:7px 11px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.dbtn:hover{filter:brightness(1.07)}
+.dbtn svg.ic{width:16px;height:16px}
+.dlink{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 10px;font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.dlink:hover{border-color:var(--ink-2)}
+@media (max-width:560px){
+  .drow{flex-wrap:wrap}
+  .dact{width:100%;justify-content:flex-end;padding-left:34px}
+  .drow.gv .dact,.dsec:first-of-type .dact{padding-left:0}
+}

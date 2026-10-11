@@ -8,8 +8,7 @@ const TAI_LIEU_TU_GITHUB = !!window.SOTAY_MOT_FILE || /claude\.(ai|site)|claudeu
 function fileUrl(f){ return TAI_LIEU_TU_GITHUB ? GITHUB_RAW + f.split("/").map(encodeURIComponent).join("/") : f; }
 function absUrl(u){ try{ return new URL(u, location.href).href; }catch(e){ return u; } }
 function renderLinks(){
-  const docs = TAI_LIEU.map(d=>({name:d.ten, icon:"pdf", color:"var(--tag-ly)", items:d.items.map(it=>({t:it.t, u:fileUrl(it.file), host:it.mo_ta}))}));
-  document.getElementById("links").innerHTML = docs.concat(LINK_GROUPS).map((g,gi)=>
+  document.getElementById("links").innerHTML = LINK_GROUPS.map((g,gi)=>
     '<section class="lgroup"><h3><span>Nhóm '+(gi+1)+'</span><b>'+esc(g.name)+'</b></h3><div class="lgrid">'+
     g.items.map(it=>'<div class="lcard" style="--lc:'+g.color+'"><span class="lic">'+icon(g.icon)+'</span>'+
       '<a href="'+esc(it.u)+'" target="_blank" rel="noopener"><b>'+esc(it.t)+'</b><small>'+esc(it.host || it.u.replace(/^https?:\/\//,"").replace(/\/$/,""))+'</small></a>'+

@@ -20,7 +20,7 @@
   .sheet{padding:34px 44px 40px 64px}
   .sheet::before{left:40px}
   .sheet h1{font-size:calc(1.95rem * var(--fs-scale))}
-  .view-week,.view-settings,.view-links{overflow-y:auto}
+  .view-week,.view-settings,.view-links,.view-docs{overflow-y:auto}
   .page{padding:30px 36px 60px}
   .toast{bottom:28px}
 }

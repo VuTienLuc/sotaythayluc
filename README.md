@@ -28,13 +28,14 @@ css/                       Giao diện, chia theo khu vực
   07-may-tinh.css            bố cục 3 cột trên máy tính
   08-trinh-chieu.css         chế độ trình chiếu bảng xanh
   09-modal-toast.css         hộp thoại, thông báo nhỏ, bản in
+  10-tai-lieu.css            menu Tài liệu PDF
 data/                      Nội dung (sửa ở đây là chủ yếu)
   _khoi-tao.js               tạo kho SOTAY.DATA
   khoi-lop/01-lop-4.js ...   mỗi khối lớp một file
   trang-web.js               danh sách trang web theo nhóm
-  tai-lieu.js                tài liệu PDF tải về (hiện ở mục Trang web và đầu các bài liên quan)
+  tai-lieu.js                tài liệu PDF (menu Tài liệu: Lớp → bài; và thanh tải ở đầu bài)
 js/                        Chức năng, nạp theo thứ tự số
-  01-bieu-tuong.js … 18-khoi-dong.js
+  01-bieu-tuong.js … 19-khoi-dong.js (15-tai-lieu.js: menu Tài liệu)
 tools/gop-mot-file.py      Gộp toàn bộ thành một file HTML trong dist/
 dist/so-tay-toan-hoc.html  Bản một file đã gộp sẵn
 tai-lieu/                  Phiếu ôn tập, phiếu làm bài PDF và hướng dẫn chấm bằng AI

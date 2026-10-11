@@ -5,4 +5,5 @@
 .app[data-view="sotay"] .view-sotay,
 .app[data-view="week"] .view-week,
 .app[data-view="links"] .view-links,
+.app[data-view="docs"] .view-docs,
 .app[data-view="settings"] .view-settings{display:block}

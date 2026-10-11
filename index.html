@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/07-may-tinh.css">
 <link rel="stylesheet" href="css/08-trinh-chieu.css">
 <link rel="stylesheet" href="css/09-modal-toast.css">
+<link rel="stylesheet" href="css/10-tai-lieu.css">
 <script>
 window.MathJax = {
   tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},
@@ -32,6 +33,7 @@ window.MathJax = {
     <div class="logo" aria-hidden="true">∑</div>
     <button type="button" class="rail-btn" data-nav="sotay" aria-current="page"><span data-ic="book"></span>Sổ tay</button>
     <button type="button" class="rail-btn" data-nav="links"><span data-ic="globe"></span>Trang web</button>
+    <button type="button" class="rail-btn" data-nav="docs"><span data-ic="pdf"></span>Tài liệu</button>
     <button type="button" class="rail-btn" data-nav="week"><span data-ic="cal"></span>TKB tuần</button>
     <div class="spacer"></div>
     <button type="button" class="rail-btn" data-nav="settings"><span data-ic="gear"></span>Cài đặt</button>
@@ -64,6 +66,13 @@ window.MathJax = {
       <h2 class="pt">Trang web của thầy</h2>
       <p class="hint">Các trang dạy học và công cụ thầy hay dùng. Bấm vào thẻ để mở trong thẻ mới.</p>
       <div id="links"></div>
+    </div>
+  </section>
+
+  <section class="view view-docs">
+    <div class="page">
+      <h2 class="pt">Tài liệu PDF</h2>
+      <div id="docs"></div>
     </div>
   </section>
 
@@ -114,6 +123,7 @@ window.MathJax = {
   <nav class="tabbar" aria-label="Điều hướng chính">
     <button type="button" class="tab" data-nav="sotay" aria-current="page"><span data-ic="book"></span>Sổ tay</button>
     <button type="button" class="tab" data-nav="links"><span data-ic="globe"></span>Trang web</button>
+    <button type="button" class="tab" data-nav="docs"><span data-ic="pdf"></span>Tài liệu</button>
     <button type="button" class="tab" data-nav="week"><span data-ic="cal"></span>TKB tuần</button>
     <button type="button" class="tab" data-nav="settings"><span data-ic="gear"></span>Cài đặt</button>
   </nav>
@@ -175,9 +185,10 @@ window.MathJax = {
 <script src="js/12-trinh-chieu.js"></script>
 <script src="js/13-phim-tat.js"></script>
 <script src="js/14-trang-web.js"></script>
-<script src="js/15-thoi-khoa-bieu.js"></script>
-<script src="js/16-cai-dat.js"></script>
-<script src="js/17-hop-thoai-sao-luu.js"></script>
-<script src="js/18-khoi-dong.js"></script>
+<script src="js/15-tai-lieu.js"></script>
+<script src="js/16-thoi-khoa-bieu.js"></script>
+<script src="js/17-cai-dat.js"></script>
+<script src="js/18-hop-thoai-sao-luu.js"></script>
+<script src="js/19-khoi-dong.js"></script>
 </body>
 </html>

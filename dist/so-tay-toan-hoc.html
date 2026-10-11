@@ -83,6 +83,7 @@ svg.ic{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-wid
 .app[data-view="sotay"] .view-sotay,
 .app[data-view="week"] .view-week,
 .app[data-view="links"] .view-links,
+.app[data-view="docs"] .view-docs,
 .app[data-view="settings"] .view-settings{display:block}
 
 /* ---------- Mục lục (sidebar) ---------- */
@@ -297,7 +298,7 @@ details.day.today{border-color:var(--accent)}
   .sheet{padding:34px 44px 40px 64px}
   .sheet::before{left:40px}
   .sheet h1{font-size:calc(1.95rem * var(--fs-scale))}
-  .view-week,.view-settings,.view-links{overflow-y:auto}
+  .view-week,.view-settings,.view-links,.view-docs{overflow-y:auto}
   .page{padding:30px 36px 60px}
   .toast{bottom:28px}
 }
@@ -366,6 +367,41 @@ mjx-container{font-size:104% !important}
   .hide-sol .sol{display:block}
   .it{break-inside:avoid}
 }
+
+/* ---------- Tài liệu PDF ---------- */
+.dgrade{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.dgrade>summary,.dgrade.empty{list-style:none;display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;font-size:1rem}
+.dgrade>summary::-webkit-details-marker{display:none}
+.dgrade>summary:hover{background:var(--accent-soft)}
+.dgrade small{margin-left:auto;color:var(--muted);font-size:.78rem;font-weight:600;font-variant-numeric:tabular-nums}
+.dgrade .chev{width:16px;height:16px;color:var(--muted);transition:transform .18s}
+.dgrade[open] .chev{transform:rotate(90deg)}
+.dgrade[open]>summary{border-bottom:1px solid var(--line-soft)}
+.dgrade.empty{cursor:default;opacity:.6;padding:10px 14px}
+.dbody{padding:4px 14px 14px}
+.dmach{font-family:var(--font-title);font-size:1.1rem;margin:12px 0 6px}
+.dsec{margin:0 0 12px}
+.dsec-t{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px}
+.drow{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line-soft)}
+.drow:first-of-type{border-top:0}
+.dnum{flex:none;width:24px;height:24px;border-radius:50%;background:var(--tag-ly);color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.dname{flex:1;min-width:0}
+.dname b{display:block;font-weight:600;font-size:.92rem;line-height:1.35}
+.dname small{display:block;color:var(--muted);font-size:.76rem}
+.dtag{font-style:normal;font-size:.66rem;font-weight:700;color:var(--accent);border:1px solid currentColor;border-radius:999px;padding:0 6px;margin-left:4px;vertical-align:1px}
+.dname b+.dtag{display:inline-block}
+.drow.gv .dname b{display:inline}
+.dact{display:flex;align-items:center;gap:4px;flex:none}
+.dbtn{display:inline-flex;align-items:center;gap:6px;background:var(--tag-ly);color:#fff;text-decoration:none;border-radius:8px;padding:7px 11px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.dbtn:hover{filter:brightness(1.07)}
+.dbtn svg.ic{width:16px;height:16px}
+.dlink{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 10px;font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.dlink:hover{border-color:var(--ink-2)}
+@media (max-width:560px){
+  .drow{flex-wrap:wrap}
+  .dact{width:100%;justify-content:flex-end;padding-left:34px}
+  .drow.gv .dact,.dsec:first-of-type .dact{padding-left:0}
+}
 </style>
 </head>
 <body>
@@ -374,6 +410,7 @@ mjx-container{font-size:104% !important}
     <div class="logo" aria-hidden="true">∑</div>
     <button type="button" class="rail-btn" data-nav="sotay" aria-current="page"><span data-ic="book"></span>Sổ tay</button>
     <button type="button" class="rail-btn" data-nav="links"><span data-ic="globe"></span>Trang web</button>
+    <button type="button" class="rail-btn" data-nav="docs"><span data-ic="pdf"></span>Tài liệu</button>
     <button type="button" class="rail-btn" data-nav="week"><span data-ic="cal"></span>TKB tuần</button>
     <div class="spacer"></div>
     <button type="button" class="rail-btn" data-nav="settings"><span data-ic="gear"></span>Cài đặt</button>
@@ -406,6 +443,13 @@ mjx-container{font-size:104% !important}
       <h2 class="pt">Trang web của thầy</h2>
       <p class="hint">Các trang dạy học và công cụ thầy hay dùng. Bấm vào thẻ để mở trong thẻ mới.</p>
       <div id="links"></div>
+    </div>
+  </section>
+
+  <section class="view view-docs">
+    <div class="page">
+      <h2 class="pt">Tài liệu PDF</h2>
+      <div id="docs"></div>
     </div>
   </section>
 
@@ -456,6 +500,7 @@ mjx-container{font-size:104% !important}
   <nav class="tabbar" aria-label="Điều hướng chính">
     <button type="button" class="tab" data-nav="sotay" aria-current="page"><span data-ic="book"></span>Sổ tay</button>
     <button type="button" class="tab" data-nav="links"><span data-ic="globe"></span>Trang web</button>
+    <button type="button" class="tab" data-nav="docs"><span data-ic="pdf"></span>Tài liệu</button>
     <button type="button" class="tab" data-nav="week"><span data-ic="cal"></span>TKB tuần</button>
     <button type="button" class="tab" data-nav="settings"><span data-ic="gear"></span>Cài đặt</button>
   </nav>
@@ -2516,8 +2561,7 @@ const TAI_LIEU_TU_GITHUB = !!window.SOTAY_MOT_FILE || /claude\.(ai|site)|claudeu
 function fileUrl(f){ return TAI_LIEU_TU_GITHUB ? GITHUB_RAW + f.split("/").map(encodeURIComponent).join("/") : f; }
 function absUrl(u){ try{ return new URL(u, location.href).href; }catch(e){ return u; } }
 function renderLinks(){
-  const docs = TAI_LIEU.map(d=>({name:d.ten, icon:"pdf", color:"var(--tag-ly)", items:d.items.map(it=>({t:it.t, u:fileUrl(it.file), host:it.mo_ta}))}));
-  document.getElementById("links").innerHTML = docs.concat(LINK_GROUPS).map((g,gi)=>
+  document.getElementById("links").innerHTML = LINK_GROUPS.map((g,gi)=>
     '<section class="lgroup"><h3><span>Nhóm '+(gi+1)+'</span><b>'+esc(g.name)+'</b></h3><div class="lgrid">'+
     g.items.map(it=>'<div class="lcard" style="--lc:'+g.color+'"><span class="lic">'+icon(g.icon)+'</span>'+
       '<a href="'+esc(it.u)+'" target="_blank" rel="noopener"><b>'+esc(it.t)+'</b><small>'+esc(it.host || it.u.replace(/^https?:\/\//,"").replace(/\/$/,""))+'</small></a>'+
@@ -2526,6 +2570,57 @@ function renderLinks(){
 }
 document.getElementById("links").addEventListener("click", e=>{
   const b = e.target.closest("[data-copy]"); if(b){ e.preventDefault(); copyText(b.dataset.copy, "Đã sao chép liên kết"); }
+});
+</script>
+<script>
+// ===================== TÀI LIỆU PDF (menu riêng) =====================
+// Cấp 1: danh sách lớp có tài liệu (bấm để mở) → Cấp 2: bộ tài liệu chung + từng bài với phiếu PDF.
+// Dữ liệu: data/tai-lieu.js (window.TAI_LIEU). fileUrl/absUrl khai báo ở js/14-trang-web.js.
+const docsRoot = document.getElementById("docs");
+function topicIdByName(g, mach, ten){
+  const e = INDEX.find(x=>String(x.g)===String(g) && x.strandName===mach && x.topicName===ten);
+  return e ? e.id : null;
+}
+function docBtn(it, label){
+  const u = fileUrl(it.file);
+  return '<a class="dbtn" href="'+esc(u)+'" target="_blank" rel="noopener">'+icon("pdf")+'<span>'+esc(label||(/\.pdf$/i.test(it.file)?"Mở PDF":"Mở tệp"))+'</span></a>'+
+    '<button type="button" class="icon-btn" data-copy="'+esc(absUrl(u))+'" aria-label="Sao chép liên kết '+esc(it.t)+'" title="Sao chép liên kết">'+icon("copy")+'</button>';
+}
+function renderDocs(){
+  // gom theo khối lớp, giữ thứ tự khối như trong sổ tay
+  const byGrade = DATA.map(g=>({g:g.g, l:g.l, c:g.c, sets:TAI_LIEU.filter(d=>String(d.khoi)===String(g.g))}));
+  const total = TAI_LIEU.reduce((a,d)=>a+d.items.length,0);
+  let html = '<p class="hint">'+total+' tài liệu PDF. Bấm vào lớp để xem các bài, mỗi bài có phiếu luyện riêng. Nút sao chép cho đường link đầy đủ để gửi Zalo cho học sinh.</p>';
+  byGrade.forEach(gr=>{
+    const n = gr.sets.reduce((a,d)=>a+d.items.length,0);
+    if(!n){ html += '<div class="dgrade empty" style="--gc:'+gr.c+'"><span class="dot"></span><b>'+esc(gr.l)+'</b><small>Chưa có tài liệu</small></div>'; return; }
+    html += '<details class="dgrade" style="--gc:'+gr.c+'"><summary><span class="dot"></span><b>'+esc(gr.l)+'</b><small>'+n+' tài liệu</small><svg class="ic chev" viewBox="0 0 24 24" aria-hidden="true">'+IC.chev+'</svg></summary><div class="dbody">';
+    // gom theo mạch
+    const machs = [...new Set(gr.sets.map(d=>d.mach))];
+    machs.forEach(mach=>{
+      const items = [].concat(...gr.sets.filter(d=>d.mach===mach).map(d=>d.items));
+      const general = items.filter(it=>!it.bai);
+      const perTopic = items.filter(it=>it.bai);
+      html += '<h3 class="dmach">'+esc(mach)+'</h3>';
+      if(general.length){
+        html += '<div class="dsec"><div class="dsec-t">Bộ đề và phiếu tổng hợp</div>'+general.map(it=>
+          '<div class="drow'+(it.gv?' gv':'')+'"><span class="dname"><b>'+esc(it.t)+'</b>'+(it.gv?' <em class="dtag">Giáo viên</em>':'')+'<small>'+esc(it.mo_ta)+'</small></span><span class="dact">'+docBtn(it)+'</span></div>').join("")+'</div>';
+      }
+      if(perTopic.length){
+        html += '<div class="dsec"><div class="dsec-t">Phiếu luyện theo bài</div>'+perTopic.map((it,k)=>{
+          const id = topicIdByName(gr.g, mach, it.bai);
+          return '<div class="drow"><span class="dnum">'+(k+1)+'</span><span class="dname"><b>'+esc(it.bai)+'</b><small>'+esc(it.mo_ta)+'</small></span><span class="dact">'+
+            (id?'<button type="button" class="dlink" data-open-topic="'+id+'">Xem bài</button>':'')+docBtn(it, "Phiếu PDF")+'</span></div>';
+        }).join("")+'</div>';
+      }
+    });
+    html += '</div></details>';
+  });
+  docsRoot.innerHTML = html;
+}
+docsRoot.addEventListener("click", e=>{
+  const c = e.target.closest("[data-copy]"); if(c){ e.preventDefault(); copyText(c.dataset.copy, "Đã sao chép liên kết"); return; }
+  const o = e.target.closest("[data-open-topic]"); if(o){ openTopic(o.dataset.openTopic); }
 });
 </script>
 <script>
@@ -2639,6 +2734,7 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
 function refreshAll(){ applyTheme(); syncSettings(); renderGradeChips(); renderSide(); renderReader(); if(app.dataset.view==="week") renderWeek(); }
 paintIcons(document);
 renderLinks();
+renderDocs();
 if(/Mac|iPhone|iPad/.test(navigator.platform||"")) document.getElementById("qKbd").textContent = "⌘ K";
 if(window.matchMedia("(hover:none)").matches) document.getElementById("qKbd").hidden = true;
 (function init(){
