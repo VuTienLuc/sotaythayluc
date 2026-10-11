@@ -22,10 +22,13 @@ function neighbors(id){
 }
 // Thanh tải tài liệu PDF cho các bài thuộc mạch có trong data/tai-lieu.js
 function docBar(e){
-  const d = (window.TAI_LIEU||[]).find(x=>String(x.khoi)===String(e.g) && x.mach===e.strandName);
-  if(!d) return "";
+  const ds = (window.TAI_LIEU||[]).filter(x=>String(x.khoi)===String(e.g) && x.mach===e.strandName);
+  if(!ds.length) return "";
+  const all = [].concat(...ds.map(d=>d.items)).filter(it=>!it.gv && (!it.bai || it.bai===e.topicName));
+  if(!all.length) return "";
+  all.sort((a,b)=>(b.bai?1:0)-(a.bai?1:0));
   return '<div class="docbar"><span class="docbar-t">'+icon("download")+'Tải phiếu PDF</span>'+
-    d.items.filter(it=>!it.gv).map(it=>'<a class="docbtn" href="'+esc(fileUrl(it.file))+'" target="_blank" rel="noopener" title="'+esc(it.mo_ta)+'">'+icon("pdf")+esc(it.t)+'</a>').join("")+'</div>';
+    all.map(it=>'<a class="docbtn'+(it.bai?' main':'')+'" href="'+esc(fileUrl(it.file))+'" target="_blank" rel="noopener" title="'+esc(it.mo_ta)+'">'+icon("pdf")+esc(it.bai?'Phiếu luyện bài này':it.t)+'</a>').join("")+'</div>';
 }
 function renderReader(){
   if(!currentId){ renderWelcome(); return; }

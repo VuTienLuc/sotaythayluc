@@ -86,3 +86,5 @@
 .docbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;border-radius:8px;padding:6px 10px;font-size:.82rem;font-weight:600}
 .docbtn:hover{border-color:var(--tag-ly);color:var(--tag-ly)}
 @media print{.docbar{display:none}}
+.docbtn.main{background:var(--tag-ly);border-color:var(--tag-ly);color:#fff}
+.docbtn.main:hover{color:#fff;filter:brightness(1.07)}
