@@ -1,0 +1,26 @@
+/* ---------- TKB & Cài đặt ---------- */
+.page{padding:18px 16px 110px;max-width:980px;margin:0 auto}
+.page h2.pt{font-family:var(--font-title);font-size:1.45rem;margin:4px 0 4px}
+.hint{color:var(--muted);font-size:.85rem;margin:0 0 14px}
+.week{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+details.day{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+details.day>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;display:flex;align-items:center;gap:8px}
+details.day>summary::-webkit-details-marker{display:none}
+details.day.today{border-color:var(--accent)}
+.badge{background:var(--accent);color:var(--accent-ink);font-size:.64rem;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em}
+.day-body{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px}
+.sess h4{margin:0 0 5px;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.periods{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.periods input,.sess textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:.85rem;background:var(--bg);color:var(--ink)}
+.sess textarea{min-height:60px;resize:vertical}
+.group{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.group h3{margin:0 0 4px;font-size:.95rem}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:.88rem}
+.seg-inline{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.seg-inline button{border:0;background:transparent;border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer}
+.seg-inline button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.gchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.gchip{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 9px;font-size:.82rem;font-weight:600;cursor:pointer;background:var(--bg)}
+.gchip input{accent-color:var(--accent);margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.about{color:var(--muted);font-size:.78rem;text-align:center;margin-top:8px}

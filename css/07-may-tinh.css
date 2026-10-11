@@ -1,0 +1,26 @@
+/* ---------- Máy tính ---------- */
+@media (min-width:980px){
+  body{overflow:hidden}
+  .app{height:100%;display:grid;grid-template-columns:var(--rail) 1fr}
+  .tabbar{display:none !important}
+  .rail{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 0;background:var(--paper);border-right:1px solid var(--line)}
+  .rail .logo{font-family:var(--font-title);font-weight:700;font-size:1.3rem;color:var(--accent);margin-bottom:14px}
+  .rail-btn{width:56px;border:0;background:transparent;border-radius:10px;padding:8px 0 6px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.64rem;font-weight:600;color:var(--muted);cursor:pointer}
+  .rail-btn:hover{background:var(--accent-soft);color:var(--ink)}
+  .rail-btn[aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
+  .rail .spacer{flex:1}
+  .view{height:100%;overflow:hidden}
+  .app[data-view="sotay"] .view-sotay{display:grid;grid-template-columns:var(--side) 1fr}
+  .side{border-right:1px solid var(--line);overflow-y:auto;min-height:0}
+  .side-body{padding-bottom:24px}
+  .reader,.app.reading .reader{display:block;overflow-y:auto;min-height:0}
+  .app.reading .side{display:flex}
+  .r-back{display:none !important}
+  .r-wrap{padding:26px 36px 60px}
+  .sheet{padding:34px 44px 40px 64px}
+  .sheet::before{left:40px}
+  .sheet h1{font-size:calc(1.95rem * var(--fs-scale))}
+  .view-week,.view-settings,.view-links{overflow-y:auto}
+  .page{padding:30px 36px 60px}
+  .toast{bottom:28px}
+}

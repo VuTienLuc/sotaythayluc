@@ -1,0 +1,8 @@
+/* ---------- Khung ứng dụng ---------- */
+.app{min-height:100%}
+.rail{display:none}
+.view{display:none}
+.app[data-view="sotay"] .view-sotay,
+.app[data-view="week"] .view-week,
+.app[data-view="links"] .view-links,
+.app[data-view="settings"] .view-settings{display:block}

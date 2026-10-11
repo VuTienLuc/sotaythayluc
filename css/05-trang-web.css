@@ -1,0 +1,15 @@
+/* ---------- Trang web ---------- */
+.lgroup{margin:0 0 22px}
+.lgroup h3{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.lgroup h3 b{font-family:var(--font-title);font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--ink)}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.lcard{position:relative;display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 12px 12px 14px;min-width:0}
+.lcard:hover{border-color:var(--lc)}
+.lcard .lic{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--lc) 14%,transparent);color:var(--lc)}
+.lcard a{flex:1;min-width:0;text-decoration:none;color:inherit}
+.lcard a::after{content:"";position:absolute;inset:0;border-radius:var(--r)}
+.lcard a:focus-visible{outline:none}
+.lcard:focus-within{outline:2px solid var(--focus);outline-offset:2px}
+.lcard b{display:block;font-weight:700;font-size:.95rem}
+.lcard small{display:block;color:var(--muted);font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lcard .icon-btn{position:relative;z-index:1}

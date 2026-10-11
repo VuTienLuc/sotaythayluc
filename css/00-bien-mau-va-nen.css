@@ -1,0 +1,59 @@
+/* Bố cục: máy tính = thanh điều hướng | mục lục | trang vở đọc bài; điện thoại = mục lục → trang đọc + thanh dưới.
+   Chất liệu: trang vở ô li có lề đỏ, trình chiếu kiểu bảng xanh lớp học. */
+:root{
+  --bg:#efe9dc;
+  --paper:#fffdf7;
+  --sheet:#fffefa;
+  --ink:#25231e;
+  --ink-2:#4a463c;
+  --muted:#736d5f;
+  --line:#e0d7c2;
+  --line-soft:#ece5d4;
+  --grid:rgba(120,140,190,.10);
+  --margin-red:rgba(207,58,74,.38);
+  --accent:#b3173f;
+  --accent-ink:#ffffff;
+  --accent-soft:rgba(179,23,63,.09);
+  --focus:#2563eb;
+  --shadow:0 1px 2px rgba(60,50,20,.06),0 6px 20px rgba(60,50,20,.07);
+  --tag-dn:#2f5fc4; --tag-ct:#b3173f; --tag-tc:#2b7f3b; --tag-dh:#7330d0;
+  --tag-ly:#b86a00; --tag-dt:#3b52d4; --tag-vd:#0d7a5f;
+  --vd-bg:rgba(13,122,95,.06);
+  --mark:rgba(179,23,63,.16);
+  --board:#17332a; --board-ink:#ffffff; --board-dim:rgba(255,255,255,.8); --chalk-y:#ffd84d;
+  --font-ui:'Be Vietnam Pro','Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-title:'Noto Serif',Georgia,'Times New Roman',serif;
+  --fs-scale:1;
+  --pr-scale:1;
+  --r:12px;
+  --rail:72px; --side:340px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15161a; --paper:#1c1d22; --sheet:#202127; --ink:#ebe7da; --ink-2:#cfcabb; --muted:#9a9586;
+    --line:#33343b; --line-soft:#2a2b31; --grid:rgba(150,170,220,.06); --margin-red:rgba(240,110,125,.32);
+    --accent:#f0628a; --accent-ink:#1a1014; --accent-soft:rgba(240,98,138,.12); --focus:#7aa2ff;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    --tag-dn:#82a6ff; --tag-ct:#f0628a; --tag-tc:#6fcf86; --tag-dh:#b993ff; --tag-ly:#f2ac4b; --tag-dt:#8f9bff; --tag-vd:#4fd1aa;
+    --vd-bg:rgba(79,209,170,.07); --mark:rgba(240,98,138,.28);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15161a; --paper:#1c1d22; --sheet:#202127; --ink:#ebe7da; --ink-2:#cfcabb; --muted:#9a9586;
+  --line:#33343b; --line-soft:#2a2b31; --grid:rgba(150,170,220,.06); --margin-red:rgba(240,110,125,.32);
+  --accent:#f0628a; --accent-ink:#1a1014; --accent-soft:rgba(240,98,138,.12); --focus:#7aa2ff;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  --tag-dn:#82a6ff; --tag-ct:#f0628a; --tag-tc:#6fcf86; --tag-dh:#b993ff; --tag-ly:#f2ac4b; --tag-dt:#8f9bff; --tag-vd:#4fd1aa;
+  --vd-bg:rgba(79,209,170,.07); --mark:rgba(240,98,138,.28);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:calc(15px * var(--fs-scale));line-height:1.6;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+svg.ic{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}

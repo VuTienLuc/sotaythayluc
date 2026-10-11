@@ -1,0 +1,5 @@
+/* ---------- Thanh dưới (điện thoại) ---------- */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;background:var(--paper);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tab{flex:1;border:0;background:none;padding:8px 4px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.68rem;font-weight:600;color:var(--muted);cursor:pointer;min-height:54px}
+.tab[aria-current="page"]{color:var(--accent)}
+.app.reading .tabbar{display:none}

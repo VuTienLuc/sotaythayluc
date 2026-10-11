@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sổ Tay Toán Học 4-12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif:ital,wght@0,600;0,700;1,500&display=swap">
+<link rel="stylesheet" href="css/00-bien-mau-va-nen.css">
+<link rel="stylesheet" href="css/01-khung-ung-dung.css">
+<link rel="stylesheet" href="css/02-muc-luc.css">
+<link rel="stylesheet" href="css/03-trang-doc.css">
+<link rel="stylesheet" href="css/04-tkb-cai-dat.css">
+<link rel="stylesheet" href="css/05-trang-web.css">
+<link rel="stylesheet" href="css/06-thanh-duoi.css">
+<link rel="stylesheet" href="css/07-may-tinh.css">
+<link rel="stylesheet" href="css/08-trinh-chieu.css">
+<link rel="stylesheet" href="css/09-modal-toast.css">
+<script>
+window.MathJax = {
+  tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},
+  options:{skipHtmlTags:['script','noscript','style','textarea','pre','code','button']},
+  startup:{typeset:false}
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
+</head>
+<body>
+<div class="app" id="app" data-view="sotay">
+  <nav class="rail" aria-label="Điều hướng chính">
+    <div class="logo" aria-hidden="true">∑</div>
+    <button type="button" class="rail-btn" data-nav="sotay" aria-current="page"><span data-ic="book"></span>Sổ tay</button>
+    <button type="button" class="rail-btn" data-nav="links"><span data-ic="globe"></span>Trang web</button>
+    <button type="button" class="rail-btn" data-nav="week"><span data-ic="cal"></span>TKB tuần</button>
+    <div class="spacer"></div>
+    <button type="button" class="rail-btn" data-nav="settings"><span data-ic="gear"></span>Cài đặt</button>
+  </nav>
+
+  <div class="view view-sotay">
+    <aside class="side" aria-label="Mục lục">
+      <div class="side-head">
+        <p class="brand"><b>Sổ Tay Toán Học</b><small>Thầy Vũ Tiến Lực · THPT Nguyễn Hữu Cảnh</small></p>
+        <label class="search">
+          <span data-ic="search"></span>
+          <span class="sr">Tra cứu</span>
+          <input id="q" type="search" placeholder="Tra cứu công thức, định nghĩa, bài…" autocomplete="off">
+          <span class="kbd" id="qKbd">Ctrl K</span>
+        </label>
+        <div class="seg" role="tablist" aria-label="Danh sách">
+          <button type="button" role="tab" data-list="toc" aria-selected="true">Mục lục</button>
+          <button type="button" role="tab" data-list="fav" aria-selected="false">Yêu thích</button>
+          <button type="button" role="tab" data-list="his" aria-selected="false">Lịch sử</button>
+        </div>
+      </div>
+      <div class="side-body" id="sideBody"></div>
+    </aside>
+
+    <section class="reader" id="reader" aria-live="polite"></section>
+  </div>
+
+  <section class="view view-links">
+    <div class="page">
+      <h2 class="pt">Trang web của thầy</h2>
+      <p class="hint">Các trang dạy học và công cụ thầy hay dùng. Bấm vào thẻ để mở trong thẻ mới.</p>
+      <div id="links"></div>
+    </div>
+  </section>
+
+  <section class="view view-week">
+    <div class="page">
+      <h2 class="pt">Thời khoá biểu tuần</h2>
+      <p class="hint">Ghi lịch dạy và việc cần làm cho từng ngày. Dữ liệu lưu ngay trên thiết bị này.</p>
+      <div class="week" id="week"></div>
+    </div>
+  </section>
+
+  <section class="view view-settings">
+    <div class="page" style="max-width:720px">
+      <h2 class="pt">Cài đặt</h2>
+      <p class="hint">Các lựa chọn được lưu trên thiết bị này.</p>
+      <div class="group">
+        <h3>Giao diện</h3>
+        <div class="row"><span>Chế độ màu</span>
+          <div class="seg-inline" id="themeCtl"><button type="button" data-v="system">Hệ thống</button><button type="button" data-v="light">Sáng</button><button type="button" data-v="dark">Tối</button></div></div>
+        <div class="row"><span>Cỡ chữ</span>
+          <div class="seg-inline" id="fontCtl"><button type="button" data-v="1">Nhỏ</button><button type="button" data-v="2">Vừa</button><button type="button" data-v="3">Lớn</button></div></div>
+      </div>
+      <div class="group">
+        <h3>Trình chiếu</h3>
+        <div class="row"><span>Nền khi chiếu</span>
+          <div class="seg-inline" id="prBgCtl"><button type="button" data-v="board">Bảng xanh</button><button type="button" data-v="light">Nền trắng</button><button type="button" data-v="dark">Nền tối</button></div></div>
+        <div class="row"><span>Lời giải ví dụ</span>
+          <div class="seg-inline" id="revealCtl"><button type="button" data-v="1">Hiện sau 1 lần bấm</button><button type="button" data-v="0">Hiện ngay</button></div></div>
+      </div>
+      <div class="group">
+        <h3>Hiển thị khối lớp</h3>
+        <p class="hint" style="margin:0">Bỏ chọn để ẩn khối lớp chưa cần dùng.</p>
+        <div class="gchips" id="gradeChips"></div>
+      </div>
+      <div class="group">
+        <h3>Dữ liệu cá nhân</h3>
+        <p class="hint" style="margin:0">Yêu thích, lịch sử, thời khoá biểu và cài đặt chỉ lưu trên thiết bị này. Sao lưu để chuyển sang máy khác.</p>
+        <div class="btns">
+          <button type="button" class="btn" id="exportBtn">Xuất dữ liệu</button>
+          <button type="button" class="btn" id="importBtn">Nhập dữ liệu</button>
+          <button type="button" class="btn btn-danger" id="resetBtn">Xóa toàn bộ</button>
+        </div>
+      </div>
+      <p class="about" id="about"></p>
+    </div>
+  </section>
+
+  <nav class="tabbar" aria-label="Điều hướng chính">
+    <button type="button" class="tab" data-nav="sotay" aria-current="page"><span data-ic="book"></span>Sổ tay</button>
+    <button type="button" class="tab" data-nav="links"><span data-ic="globe"></span>Trang web</button>
+    <button type="button" class="tab" data-nav="week"><span data-ic="cal"></span>TKB tuần</button>
+    <button type="button" class="tab" data-nav="settings"><span data-ic="gear"></span>Cài đặt</button>
+  </nav>
+</div>
+
+<div class="present" id="present" data-bg="board" role="dialog" aria-modal="true" aria-label="Trình chiếu" hidden>
+  <div class="pr-top">
+    <span class="grow" id="prTitle"></span>
+    <span class="pr-count" id="prCount"></span>
+    <button type="button" class="icon-btn" id="prSmaller" aria-label="Thu nhỏ chữ" title="Thu nhỏ chữ (−)"><span data-ic="minus"></span></button>
+    <button type="button" class="icon-btn" id="prBigger" aria-label="Phóng to chữ" title="Phóng to chữ (+)"><span data-ic="plus"></span></button>
+    <button type="button" class="icon-btn" id="prBg" aria-label="Đổi nền" title="Đổi nền (B)"><span data-ic="board"></span></button>
+    <button type="button" class="icon-btn" id="prFull" aria-label="Toàn màn hình" title="Toàn màn hình (F)"><span data-ic="full"></span></button>
+    <button type="button" class="icon-btn" id="prClose" aria-label="Thoát trình chiếu" title="Thoát (Esc)"><span data-ic="x"></span></button>
+  </div>
+  <div class="pr-stage" id="prStage"></div>
+  <div class="pr-bottom">
+    <button type="button" class="pr-nav" id="prPrev" aria-label="Trước"><span data-ic="left"></span></button>
+    <div class="pr-prog"><i id="prBar"></i></div>
+    <button type="button" class="pr-nav" id="prNext" aria-label="Tiếp"><span data-ic="right"></span></button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head"><h3 id="mTitle"></h3><button type="button" class="icon-btn" id="mClose" aria-label="Đóng"><span data-ic="x"></span></button></div>
+    <div id="mBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Dữ liệu -->
+<script src="data/_khoi-tao.js"></script>
+<script src="data/khoi-lop/01-lop-4.js"></script>
+<script src="data/khoi-lop/02-lop-5.js"></script>
+<script src="data/khoi-lop/03-lop-6.js"></script>
+<script src="data/khoi-lop/04-lop-7.js"></script>
+<script src="data/khoi-lop/05-lop-8.js"></script>
+<script src="data/khoi-lop/06-lop-9.js"></script>
+<script src="data/khoi-lop/07-on-thi-vao-10-tp-hcm.js"></script>
+<script src="data/khoi-lop/08-lop-10.js"></script>
+<script src="data/khoi-lop/09-lop-11.js"></script>
+<script src="data/khoi-lop/10-lop-12.js"></script>
+<script src="data/trang-web.js"></script>
+
+<!-- Chức năng -->
+<script src="js/01-bieu-tuong.js"></script>
+<script src="js/02-tien-ich.js"></script>
+<script src="js/03-chi-muc.js"></script>
+<script src="js/04-trang-thai.js"></script>
+<script src="js/05-mathjax.js"></script>
+<script src="js/06-toast.js"></script>
+<script src="js/07-nhan-loai-muc.js"></script>
+<script src="js/08-dieu-huong.js"></script>
+<script src="js/09-muc-luc-tim-kiem.js"></script>
+<script src="js/10-trang-doc.js"></script>
+<script src="js/11-mo-dong-bai.js"></script>
+<script src="js/12-trinh-chieu.js"></script>
+<script src="js/13-phim-tat.js"></script>
+<script src="js/14-trang-web.js"></script>
+<script src="js/15-thoi-khoa-bieu.js"></script>
+<script src="js/16-cai-dat.js"></script>
+<script src="js/17-hop-thoai-sao-luu.js"></script>
+<script src="js/18-khoi-dong.js"></script>
+</body>
+</html>
