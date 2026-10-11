@@ -32,3 +32,6 @@
   .dact{width:100%;justify-content:flex-end;padding-left:34px}
   .drow.gv .dact,.dsec:first-of-type .dact{padding-left:0}
 }
+.gvsec{border-top:1px dashed var(--line);padding-top:4px}
+.gvsec .dsec-t{color:var(--accent)}
+.gvsec .dbtn{background:var(--paper);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line))}

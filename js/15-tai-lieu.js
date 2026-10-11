@@ -24,20 +24,20 @@ function renderDocs(){
     const machs = [...new Set(gr.sets.map(d=>d.mach))];
     machs.forEach(mach=>{
       const items = [].concat(...gr.sets.filter(d=>d.mach===mach).map(d=>d.items));
-      const general = items.filter(it=>!it.bai);
+      const general = items.filter(it=>!it.bai && !it.gv);
       const perTopic = items.filter(it=>it.bai);
+      const forTeacher = items.filter(it=>it.gv);
+      const row = it=>'<div class="drow"><span class="dname"><b>'+esc(it.t)+'</b><small>'+esc(it.mo_ta)+'</small></span><span class="dact">'+docBtn(it)+'</span></div>';
       html += '<h3 class="dmach">'+esc(mach)+'</h3>';
-      if(general.length){
-        html += '<div class="dsec"><div class="dsec-t">Bộ đề và phiếu tổng hợp</div>'+general.map(it=>
-          '<div class="drow'+(it.gv?' gv':'')+'"><span class="dname"><b>'+esc(it.t)+'</b>'+(it.gv?' <em class="dtag">Giáo viên</em>':'')+'<small>'+esc(it.mo_ta)+'</small></span><span class="dact">'+docBtn(it)+'</span></div>').join("")+'</div>';
-      }
+      if(general.length) html += '<div class="dsec"><div class="dsec-t">Bộ đề và phiếu tổng hợp</div>'+general.map(row).join("")+'</div>';
       if(perTopic.length){
-        html += '<div class="dsec"><div class="dsec-t">Phiếu luyện theo bài</div>'+perTopic.map((it,k)=>{
+        html += '<div class="dsec"><div class="dsec-t">'+(perTopic.every(it=>it.nhan)?'Phiếu ôn tập và kiểm tra':'Phiếu luyện theo bài')+'</div>'+perTopic.map((it,k)=>{
           const id = topicIdByName(gr.g, mach, it.bai);
-          return '<div class="drow"><span class="dnum">'+(k+1)+'</span><span class="dname"><b>'+esc(it.bai)+'</b><small>'+esc(it.mo_ta)+'</small></span><span class="dact">'+
-            (id?'<button type="button" class="dlink" data-open-topic="'+id+'">Xem bài</button>':'')+docBtn(it, "Phiếu PDF")+'</span></div>';
+          return '<div class="drow"><span class="dnum">'+(k+1)+'</span><span class="dname"><b>'+esc(it.nhan?it.t:it.bai)+'</b><small>'+esc(it.mo_ta)+'</small></span><span class="dact">'+
+            (id?'<button type="button" class="dlink" data-open-topic="'+id+'">Xem bài</button>':'')+docBtn(it, it.nhan?"Mở PDF":"Phiếu PDF")+'</span></div>';
         }).join("")+'</div>';
       }
+      if(forTeacher.length) html += '<div class="dsec gvsec"><div class="dsec-t">Dành cho giáo viên</div>'+forTeacher.map(row).join("")+'</div>';
     });
     html += '</div></details>';
   });

@@ -28,7 +28,7 @@ function docBar(e){
   if(!all.length) return "";
   all.sort((a,b)=>(b.bai?1:0)-(a.bai?1:0));
   return '<div class="docbar"><span class="docbar-t">'+icon("download")+'Tải phiếu PDF</span>'+
-    all.map(it=>'<a class="docbtn'+(it.bai?' main':'')+'" href="'+esc(fileUrl(it.file))+'" target="_blank" rel="noopener" title="'+esc(it.mo_ta)+'">'+icon("pdf")+esc(it.bai?'Phiếu luyện bài này':it.t)+'</a>').join("")+'</div>';
+    all.map(it=>'<a class="docbtn'+(it.bai?' main':'')+'" href="'+esc(fileUrl(it.file))+'" target="_blank" rel="noopener" title="'+esc(it.mo_ta)+'">'+icon("pdf")+esc(it.bai?(it.nhan||'Phiếu luyện bài này'):it.t)+'</a>').join("")+'</div>';
 }
 function renderReader(){
   if(!currentId){ renderWelcome(); return; }

@@ -1,7 +1,8 @@
 // Tài liệu PDF tải về. File nằm trong thư mục tai-lieu/ của dự án (Vercel phục vụ trực tiếp).
 // khoi: mã khối lớp (g trong data/khoi-lop); mach: tên mạch kiến thức sẽ hiện thanh tải tài liệu ở đầu mỗi bài.
 // Thêm tài liệu: chép file PDF vào tai-lieu/... rồi thêm một dòng {t, mo_ta, file}.
-// bai: tên bài (đúng như trong data/khoi-lop) → phiếu chỉ hiện ở đầu bài đó. gv:true → chỉ hiện ở mục Trang web.
+// bai: tên bài (đúng như trong data/khoi-lop) → phiếu hiện ở đầu bài đó; nhan: chữ trên nút (mặc định "Phiếu luyện bài này").
+// gv:true → tài liệu dành cho giáo viên, chỉ hiện trong menu Tài liệu.
 window.TAI_LIEU = [
   {ten:"Tài liệu ôn thi giữa kì 1 – Toán 4", khoi:4, mach:"Ôn thi giữa kì 1", items:[
     {t:"Phiếu ôn tập – Bộ 1", mo_ta:"PDF · 12 trang · 28 bài + đề mẫu, có đáp án", file:"tai-lieu/lop-4-giua-ki-1/phieu-on-tap-bo-1.pdf"},
@@ -24,5 +25,10 @@ window.TAI_LIEU = [
     {t:"Phiếu luyện 11: Đơn vị đo độ dài, diện tích, khối lượng, dung tích", mo_ta:"PDF · 3 trang · 8 bài 3 mức, có đáp án", file:"tai-lieu/lop-4-giua-ki-1/theo-bai/11-don-vi-do-do-dai-dien-tich-khoi-luong-dung-tich.pdf", bai:"Đơn vị đo độ dài, diện tích, khối lượng, dung tích"},
     {t:"Phiếu luyện 12: Đơn vị đo thời gian. Tiền Việt Nam", mo_ta:"PDF · 3 trang · 8 bài 3 mức, có đáp án", file:"tai-lieu/lop-4-giua-ki-1/theo-bai/12-don-vi-do-thoi-gian-tien-viet-nam.pdf", bai:"Đơn vị đo thời gian. Tiền Việt Nam"},
     {t:"Phiếu luyện 13: Thực hành, trải nghiệm: mua bán và ước lượng", mo_ta:"PDF · 3 trang · 8 bài 3 mức, có đáp án", file:"tai-lieu/lop-4-giua-ki-1/theo-bai/13-thuc-hanh-trai-nghiem-mua-ban-va-uoc-luong.pdf", bai:"Thực hành, trải nghiệm: mua bán và ước lượng"}
+  ]},
+  {ten:"Hệ thức lượng trong tam giác – Toán 10", khoi:10, mach:"Hình học & Đo lường", items:[
+    {t:"Ôn tập Hệ thức lượng – Các dạng toán", mo_ta:"PDF · 6 trang · 8 dạng, 22 bài 3 mức, có đáp án", file:"tai-lieu/lop-10-he-thuc-luong/phieu-on-tap-cac-dang.pdf", bai:"Hệ thức lượng trong tam giác", nhan:"Ôn tập các dạng"},
+    {t:"Phiếu kiểm tra 45 phút (mã HTL10-KT)", mo_ta:"PDF · 4 trang · TN, Đúng/Sai, Trả lời ngắn, Tự luận · chụp ảnh để AI chấm", file:"tai-lieu/lop-10-he-thuc-luong/phieu-kiem-tra.pdf", bai:"Hệ thức lượng trong tam giác", nhan:"Phiếu kiểm tra"},
+    {t:"Hướng dẫn chấm bằng AI – HTL10-KT", mo_ta:"Dành cho giáo viên · đáp án, thang điểm từng bước, câu lệnh", file:"tai-lieu/lop-10-he-thuc-luong/huong-dan-cham-bai-bang-AI.md", gv:true}
   ]}
 ];
