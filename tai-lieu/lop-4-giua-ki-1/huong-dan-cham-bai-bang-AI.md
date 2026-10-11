@@ -3,8 +3,8 @@
 ## Cách dùng (dành cho thầy cô, không cần gửi phần này cho AI)
 
 1. Học sinh làm bài trên **Phiếu làm bài – Đề 1** (mã GK1-DE1) hoặc **Đề 2** (mã GK1-DE2).
-2. Chụp đủ 2 trang: đặt phiếu trên nền tối, chụp thẳng từ trên xuống, thấy đủ 4 ô vuông đen ở 4 góc, đủ sáng, không bóng tay.
-3. Mở Claude, ChatGPT hoặc Gemini, dán toàn bộ phần **CÂU LỆNH CHẤM BÀI** dưới đây, gửi kèm 2 ảnh của **một** học sinh.
+2. Chụp đủ bài làm (1 trang với bản tiết kiệm, 2 trang với bản đầy đủ): đặt phiếu trên nền tối, chụp thẳng từ trên xuống, thấy đủ 4 ô vuông đen ở 4 góc, đủ sáng, không bóng tay.
+3. Mở Claude, ChatGPT hoặc Gemini, dán toàn bộ phần **CÂU LỆNH CHẤM BÀI** dưới đây, gửi kèm ảnh bài làm của **một** học sinh.
 4. Đọc lại bảng chấm trước khi ghi điểm: nếu AI ghi “[không đọc được]” ở câu nào thì thầy cô tự xem câu đó.
 5. Chấm nhiều em: gửi lần lượt từng em trong cùng một cuộc trò chuyện, mỗi lần chỉ cần nhắn “Chấm tiếp em này” kèm ảnh. Cuối buổi nhắn “Gộp các dòng tổng hợp” để lấy bảng điểm cả lớp dán vào Excel.
 
